@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//メール
+Route::get('/notice', 'NoticeController@index')->name('notice.index');
+Route::get('/notice/mail', 'NoticeController@mail')->name('notice.mail');

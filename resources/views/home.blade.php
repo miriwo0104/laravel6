@@ -13,8 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <a href="{{ route('notice.index') }}">
+                        <button>
+                            通知
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
