@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <a href="{{ route('content.list') }}">
+                        <button>投稿</button>
+                    </a>
                 </div>
             </div>
         </div>
