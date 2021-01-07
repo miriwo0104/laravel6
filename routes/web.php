@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// 投稿機能
+Route::get('/crud/list', 'ContentController@list')->name('content.list');
+Route::post('/crud/save', 'ContentController@save')->name('content.save');
