@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\AppMail;
+use Illuminate\Support\Facades\Mail;
 
 class NoticeController extends Controller
 {
@@ -16,8 +18,25 @@ class NoticeController extends Controller
         return view('notices.index');
     }
 
-    public function mail()
+    public function mailMake()
     {
-        return view('notices.mail');
+        return view('notices.mail.make');
+    }
+
+    public function mailConfirm(Request $request)
+    {
+        $postData = $request->all();
+        $viewData = [
+            'postData' => $postData
+        ];
+
+        return view('notices.mail.confirm', ['viewData' => $viewData]);
+    }
+
+    public function mailSend(Request $request)
+    {
+        $postData = $request->all();
+        Mail::to('test@example')->send(new AppMail($postData));
+        return redirect(route('notice.index'));
     }
 }
