@@ -11,14 +11,16 @@ class AppMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $postData;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mailData)
+    public function __construct($postData)
     {
-        $this->mailData = $mailData;
+        $this->postData = $postData;
     }
 
     /**
@@ -30,10 +32,23 @@ class AppMail extends Mailable
     {
         if (true) {
             // HTMLメール
-            return $this->from('app@example')->subject($this->mailData['subject'])->view('mails.text', ['mailData' => $this->mailData]);
+            if (isset($this->postData['filePath']) && isset($this->postData['fileName'])) {
+                // 添付ファイルある時
+                return $this->from('app@example')
+                            ->subject($this->postData['subject'])
+                            ->view('mails.html_mail', ['postData' => $this->postData])
+                            ->attachFromStorage($this->postData['filePath'], $this->postData['fileName']);
+            } else {
+                # 添付ファイル無い時
+                return $this->from('app@example')
+                            ->subject($this->postData['subject'])
+                            ->view('mails.html_mail', ['postData' => $this->postData]);
+            }
+                        //下記はだめ！
+/*                         ->attachFromStorage(asset($this->postData['filePath'])); */
         } else {
             // TEXTメール
-            return $this->from('app@example')->subject($this->mailData['subject'])->text('mails.text', ['mailData' => $this->mailData]);
+            return $this->from('app@example')->subject($this->postData['subject'])->text('mails.text_mail', ['postData' => $this->postData]);
         }
     }
 }
