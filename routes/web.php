@@ -11,6 +11,8 @@
 |
 */
 
+use App\Jobs\LogExample;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/job', function(){
+    dispatch(new LogExample);
+
+    return 'ログへの出力ジョブを実行しました。';
+});
