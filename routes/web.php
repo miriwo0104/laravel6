@@ -12,6 +12,8 @@
 */
 
 use App\Jobs\LogExample;
+// 下記を追記
+use App\Jobs\OutputLogJob;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +28,12 @@ Route::get('/job', function(){
 
     return 'ログへの出力ジョブを実行しました。';
 });
+
+// 下記を追記
+Route::get('/output_log_job', function(){
+    $job = new OutputLogJob;
+    dispatch($job);
+
+    return 'ジョブの実行完了';
+});
+// 上記までを追記
