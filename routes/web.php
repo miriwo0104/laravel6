@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//メール
+Route::get('/notice', 'NoticeController@index')->name('notice.index');
+Route::get('/notice/mail/make', 'NoticeController@mailMake')->name('notice.mail.make');
+Route::post('/notice/mail/confirm', 'NoticeController@mailConfirm')->name('notice.mail.confirm');
+Route::post('/notice/mail/send', 'NoticeController@mailSend')->name('notice.mail.send');
