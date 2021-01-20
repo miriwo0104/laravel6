@@ -26,7 +26,7 @@ class NoticeController extends Controller
 
     public function mailMake()
     {
-        return view('notices.mail.make');
+        return view('notices.mails.make');
     }
 
     public function mailConfirm(Request $request)
@@ -41,7 +41,7 @@ class NoticeController extends Controller
             'postData' => $postData
         ];
 
-        return view('notices.mail.confirm', ['viewData' => $viewData]);
+        return view('notices.mails.confirm', ['viewData' => $viewData]);
     }
 
     public function mailSend(Request $request)

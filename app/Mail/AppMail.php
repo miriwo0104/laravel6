@@ -11,6 +11,11 @@ class AppMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * メール送信引数
+     *
+     * @var array
+     */
     private $postData;
 
     /**
@@ -36,19 +41,19 @@ class AppMail extends Mailable
                 // 添付ファイルある時
                 return $this->from('app@example')
                             ->subject($this->postData['subject'])
-                            ->view('mails.html_mail', ['postData' => $this->postData])
+                            ->view('mail_templates.html_mail', ['postData' => $this->postData])
                             ->attachFromStorage($this->postData['filePath'], $this->postData['fileName']);
             } else {
-                # 添付ファイル無い時
+                // 添付ファイルない時
                 return $this->from('app@example')
                             ->subject($this->postData['subject'])
-                            ->view('mails.html_mail', ['postData' => $this->postData]);
+                            ->view('mail_templates.html_mail', ['postData' => $this->postData]);
             }
                         //下記はだめ！
 /*                         ->attachFromStorage(asset($this->postData['filePath'])); */
         } else {
             // TEXTメール
-            return $this->from('app@example')->subject($this->postData['subject'])->text('mails.text_mail', ['postData' => $this->postData]);
+            return $this->from('app@example')->subject($this->postData['subject'])->text('mail_templates.text_mail', ['postData' => $this->postData]);
         }
     }
 }
