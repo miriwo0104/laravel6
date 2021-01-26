@@ -1,1 +1,1 @@
-{{ $postData['content']}}
+{{ $postData['content'] }}

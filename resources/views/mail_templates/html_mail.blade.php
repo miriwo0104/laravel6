@@ -1,1 +1,1 @@
-{{ $postData['content']}}
+{!! nl2br(e($postData['content'])) !!}

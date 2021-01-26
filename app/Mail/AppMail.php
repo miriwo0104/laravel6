@@ -35,7 +35,9 @@ class AppMail extends Mailable
      */
     public function build()
     {
-        if (true) {
+        return $this->from('app@example')->subject($this->postData['subject'])->text('mail_templates.text_mail', ['postData' => $this->postData]);
+
+/*         if (true) {
             // HTMLメール
             if (isset($this->postData['filePath']) && isset($this->postData['fileName'])) {
                 // 添付ファイルある時
@@ -49,11 +51,11 @@ class AppMail extends Mailable
                             ->subject($this->postData['subject'])
                             ->view('mail_templates.html_mail', ['postData' => $this->postData]);
             }
-                        //下記はだめ！
+                        //下記はだめ！ */
 /*                         ->attachFromStorage(asset($this->postData['filePath'])); */
-        } else {
+/*         } else {
             // TEXTメール
             return $this->from('app@example')->subject($this->postData['subject'])->text('mail_templates.text_mail', ['postData' => $this->postData]);
-        }
+        } */
     }
 }

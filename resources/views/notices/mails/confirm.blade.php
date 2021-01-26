@@ -11,10 +11,10 @@
     </div>
     <div class="content">
         <label>内容</label>
-        <p>{{ $viewData['postData']['content'] }}</p>
+        <p>{!! nl2br(e($viewData['postData']['content'])) !!}</p>
         <input type="hidden" name="content" value="{{ $viewData['postData']['content'] }}">
     </div>
-    @if (isset($viewData['postData']['putFileInfo']))
+{{--     @if (isset($viewData['postData']['putFileInfo']))
         <div class="file">
             <label>添付ファイル</label>
             <p>
@@ -23,7 +23,7 @@
                 <input type="hidden" name="fileName" value="{{ $viewData['postData']['putFileInfo']['fileName'] }}">
             </p>
         </div>
-    @endif
+    @endif --}}
     <button type="submit">送信</button>
 </form>
     

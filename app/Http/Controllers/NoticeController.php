@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\MailRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AppMail;
-use App\Services\MailAttachmentService;
+/* use App\Services\MailAttachmentService; */
 
 class NoticeController extends Controller
 {
     /**
      * @var MailAttachmentService
      */
-    private $mailAttachmentService;
+/*     private $mailAttachmentService;
 
     public function __construct(MailAttachmentService $mailAttachmentService)
     {
         $this->mailAttachmentService = $mailAttachmentService;
     }
-
+ */
     public function index()
     {
         return view('notices.index');
@@ -29,13 +30,13 @@ class NoticeController extends Controller
         return view('notices.mails.make');
     }
 
-    public function mailConfirm(Request $request)
+    public function mailConfirm(MailRequest $mailRequest)
     {
-        $postData = $request->all();
+        $postData = $mailRequest->all();
         
-        if (isset($postData['file'])) {
+/*         if (isset($postData['file'])) {
             $postData['putFileInfo'] = $this->mailAttachmentService->saveFile($postData['file']);
-        }
+        } */
 
         $viewData = [
             'postData' => $postData
