@@ -35,7 +35,18 @@ class AppMail extends Mailable
      */
     public function build()
     {
-        return $this->from('app@example')->subject($this->postData['subject'])->text('mail_templates.text_mail', ['postData' => $this->postData]);
+        // 下記を修正
+        if (isset($this->postData['filePath'])) {
+            return $this->from('app@example')
+                        ->subject($this->postData['subject'])
+                        ->attachFromStorage($this->postData['filePath'], mb_encode_mimeheader($this->postData['fileName']))
+                        ->text('mail_templates.text_mail', ['postData' => $this->postData]); 
+        } else {
+            return $this->from('app@example')
+                        ->subject($this->postData['subject'])
+                        ->text('mail_templates.text_mail', ['postData' => $this->postData]);
+        }
+        // 上記までを修正する。
 
 /*         if (true) {
             // HTMLメール

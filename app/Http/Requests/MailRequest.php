@@ -13,7 +13,6 @@ class MailRequest extends FormRequest
      */
     public function authorize()
     {
-        // 下記を修正
         return true;
     }
 
@@ -25,14 +24,13 @@ class MailRequest extends FormRequest
     public function rules()
     {
         return [
+            'subject' => 'required',
+            'content' => 'required',
             // 下記を追記
-            'subject' => ['required'],
-            'content' => ['required'],
-            // 上記までを追記
+            'file' => 'file|max:10000|mimes:jpeg,png,jpg,pdf',
         ];
     }
 
-    // 下記を追記
     /**
      * バリデーションエラーメッセージ
      *
@@ -43,7 +41,10 @@ class MailRequest extends FormRequest
         return [
             'subject.required' => 'メール件名を記入してください。',
             'content.required' => 'メール本文を記入してください。',
+            // 下記を追記
+            'file.max' => '10 MBを超えるファイルは添付できません。',
+            'file.mimes' => '指定のファイル形式以外は添付できません。',
+            // 上記までを追記
         ];
     }
-    // 上記までを追記
 }

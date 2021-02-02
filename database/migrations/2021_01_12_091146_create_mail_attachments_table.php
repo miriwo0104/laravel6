@@ -15,9 +15,11 @@ class CreateMailAttachmentsTable extends Migration
     {
         Schema::create('mail_attachments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            // 下記を追記
             $table->string('file_path')->comment('アップロードファイルパス');
             $table->string('file_name')->comment('アップロードファイルのオリジナルファイル名');
             $table->softDeletes();
+            // 上記までを追記
             $table->timestamps();
         });
     }
