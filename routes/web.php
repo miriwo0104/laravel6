@@ -11,6 +11,10 @@
 |
 */
 
+use App\Jobs\LogExample;
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,3 +26,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 // 投稿機能
 Route::get('/crud/list', 'ContentController@list')->name('content.list');
 Route::post('/crud/save', 'ContentController@save')->name('content.save');
+
+// ジョブ
+Route::get('/job', function(){
+    dispatch(new LogExample);
+
+    return 'ログへの出力ジョブを実行しました。';
+});
+
+// メール
+Route::get('/notice', 'NoticeController@index')->name('notice.index');
+Route::get('/notice/mail/make', 'NoticeController@mailMake')->name('notice.mail.make');
+Route::post('/notice/mail/confirm', 'NoticeController@mailConfirm')->name('notice.mail.confirm');
+Route::post('/notice/mail/send', 'NoticeController@mailSend')->name('notice.mail.send');e
