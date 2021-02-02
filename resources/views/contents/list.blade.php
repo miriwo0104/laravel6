@@ -10,7 +10,7 @@
 
 <form action="{{ route('content.save') }}" method="post">
     @csrf
-    <input type="text" name="content">
+    <input type="text" name="content" value="{{ old('content')}}">
     <input type="submit" value="登録">
 </form>
 

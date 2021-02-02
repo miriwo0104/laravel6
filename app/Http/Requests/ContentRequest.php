@@ -27,4 +27,16 @@ class ContentRequest extends FormRequest
             'content' => 'required',
         ];
     }
+
+    /**
+     * バリデーションエラーメッセージ
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'content.required' => '空の投稿はできません',
+        ];
+    }
 }
