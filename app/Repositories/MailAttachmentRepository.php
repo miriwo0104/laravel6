@@ -13,7 +13,7 @@ class MailAttachmentRepository implements MailAttachmentRepositoryInterface
 
     public function __construct(MailAttachment $mailAttachment)
     {
-        $this->$mailAttachment = $mailAttachment;
+        $this->mailAttachment = $mailAttachment;
     }
 
     /**
@@ -24,9 +24,7 @@ class MailAttachmentRepository implements MailAttachmentRepositoryInterface
      */
     public function saveFile($putFileInfo)
     {
-        $fileInfo = new MailAttachment();
-        // なんで下記だとだめなんだろう
-/*         $fileInfo = $this->mailAttachment(); */
+        $fileInfo = $this->mailAttachment;
         $fileInfo->file_path = $putFileInfo['filePath'];
         $fileInfo->file_name = $putFileInfo['fileName'];
         $fileInfo->save();
