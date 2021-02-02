@@ -38,4 +38,4 @@ Route::get('/job', function(){
 Route::get('/notice', 'NoticeController@index')->name('notice.index');
 Route::get('/notice/mail/make', 'NoticeController@mailMake')->name('notice.mail.make');
 Route::post('/notice/mail/confirm', 'NoticeController@mailConfirm')->name('notice.mail.confirm');
-Route::post('/notice/mail/send', 'NoticeController@mailSend')->name('notice.mail.send');e
+Route::post('/notice/mail/send', 'NoticeController@mailSend')->name('notice.mail.send');
