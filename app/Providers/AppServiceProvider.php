@@ -13,6 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(
+            \App\Repositories\ContentRepositoryInterface::class,
+            \App\Repositories\ContentRepository::class
+        );
         // 下記を追記
         $this->app->bind(
             \App\Repositories\MailAttachmentRepositoryInterface::class,
