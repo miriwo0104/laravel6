@@ -13,8 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <a href="{{ route('content.list') }}">
+                        <button>投稿</button>
+                    </a>
+                    <a href="{{ route('notice.index') }}">
+                        <button>通知</button>
+                    </a>
                 </div>
             </div>
         </div>

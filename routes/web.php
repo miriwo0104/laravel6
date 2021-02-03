@@ -15,6 +15,8 @@ use App\Jobs\LogExample;
 // 下記を追記
 use App\Jobs\OutputLogJob;
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,17 +25,26 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// 投稿機能
+Route::get('/crud/list', 'ContentController@list')->name('content.list');
+Route::post('/crud/save', 'ContentController@save')->name('content.save');
+
+// ジョブ
 Route::get('/job', function(){
     dispatch(new LogExample);
 
     return 'ログへの出力ジョブを実行しました。';
 });
 
-// 下記を追記
 Route::get('/output_log_job', function(){
     $job = new OutputLogJob;
     dispatch($job);
 
     return 'ジョブの実行完了';
 });
-// 上記までを追記
+
+// メール
+Route::get('/notice', 'NoticeController@index')->name('notice.index');
+Route::get('/notice/mail/make', 'NoticeController@mailMake')->name('notice.mail.make');
+Route::post('/notice/mail/confirm', 'NoticeController@mailConfirm')->name('notice.mail.confirm');
+Route::post('/notice/mail/send', 'NoticeController@mailSend')->name('notice.mail.send');
