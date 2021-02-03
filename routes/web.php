@@ -12,6 +12,8 @@
 */
 
 use App\Jobs\LogExample;
+// 下記を追記
+use App\Jobs\OutputLogJob;
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -32,6 +34,13 @@ Route::get('/job', function(){
     dispatch(new LogExample);
 
     return 'ログへの出力ジョブを実行しました。';
+});
+
+Route::get('/output_log_job', function(){
+    $job = new OutputLogJob;
+    dispatch($job);
+
+    return 'ジョブの実行完了';
 });
 
 // メール
