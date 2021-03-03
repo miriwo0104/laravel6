@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Repositories\ContentRepositoryInterface;
 use App\Models\Content;
+use Illuminate\Support\Facades\Log;
 
 class ContentRepository implements ContentRepositoryInterface
 {
@@ -33,7 +34,9 @@ class ContentRepository implements ContentRepositoryInterface
         $saveInfo['user_id'] = $saveData['userId'];
         $saveInfo['content'] = $saveData['content'];
         $saveInfo->save();
-        
+        $sql = $saveInfo->toSql();
+        Log::info($sql);
+
         return true;   
     }
 }
